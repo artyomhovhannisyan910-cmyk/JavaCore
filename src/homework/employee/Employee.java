@@ -9,17 +9,24 @@ public class Employee {
     private double salary;
     private String company;
     private String position;
+    private  PositionLevel level;
+
+    public enum PositionLevel {
+        Junior, Middle, Senior, Lead
+    }
+
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String employeID, double salary, String company, String position) {
+    public Employee(String name, String surname, String employeID, double salary, String company, String position, PositionLevel level) {
         this.name = name;
         this.surname = surname;
         this.employeID = employeID;
         this.salary = salary;
         this.company = company;
         this.position = position;
+        this.level = level;
     }
 
     public String getName() {
@@ -28,6 +35,30 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmployeID() {
+        return employeID;
+    }
+
+    public void setEmployeID(String employeID) {
+        this.employeID = employeID;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     public String getCompany() {
@@ -46,51 +77,33 @@ public class Employee {
         this.position = position;
     }
 
-    public double getSalary() {
-        return salary;
+    public PositionLevel getLevel() {
+        return level;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public String getEmployeID() {
-        return employeID;
-    }
-
-    public void setEmployeID(String employeID) {
-        this.employeID = employeID;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLevel(PositionLevel level) {
+        this.level = level;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Double.compare(salary, employee.salary) == 0 && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(employeID, employee.employeID) && Objects.equals(company, employee.company) && Objects.equals(position, employee.position);
+        return Double.compare(salary, employee.salary) == 0 && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(employeID, employee.employeID) && Objects.equals(company, employee.company) && Objects.equals(position, employee.position) && level == employee.level;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, employeID, salary, company, position);
+        return Objects.hash(name, surname, employeID, salary, company, position, level);
     }
+
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", employeID='" + employeID + '\'' +
-                ", salary=" + salary +
-                ", company='" + company + '\'' +
-                ", position='" + position + '\'' +
-                '}';
+        return name + " " + surname + ", ID: " + employeID +
+                ", Company: " + company + ", Position: " + position +
+                ", Level: " + level;
     }
 }
+
+
